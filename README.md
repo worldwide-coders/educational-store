@@ -25,13 +25,24 @@ With this application you can search video game postings in your neighborhood.  
 
 ### User Stories
 
-- As a user I want to sign in/up
-- As a user I would like to post a video game I have that people could borrow.
-- As a user I would like to browse video games available.
-- As a user I want to view the details of a specific video game.
-- As a user I would like to update a video game's information.
-- As a user I want to Delete a video game I own.
-- As a user I would like to leave a thank you comment for letting me borrow a video game.
+- As an unregistered user, I would like to sign up with email and password.
+- As a registered user, I would like to sign in with email and password.
+- As a signed in user, I would like to change password.
+- As a signed in user, I would like to sign out.
+- As an unregistered user, I would like to see all of the products.
+- As a signed in user, I would like to add and remove products from a shopping
+  cart.
+- As a signed in user, I would like to purchase products in a shopping cart
+  using [Stripe](https://stripe.com/docs/checkout).
+- As a signed in user, I would like to see all my past orders.
+
+### Reach Goal(s)
+
+- Build a search feature so that people can search for specific products by name.
+- Create a feature that allows for item donation
+- Create a feature that allows the user to choose which school will receive their donation
+- Create a feature that shows the total amount of items purchased (donated money)
+- Inventory would be editable by an admin user
 
 ### Technologies Used
 
