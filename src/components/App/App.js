@@ -8,6 +8,7 @@ import SignUp from '../auth/SignUp/SignUp'
 import SignIn from '../auth/SignIn/SignIn'
 import SignOut from '../auth/SignOut/SignOut'
 import ChangePassword from '../auth/ChangePassword/ChangePassword'
+import Item from '../Item'
 
 class App extends Component {
   constructor () {
@@ -48,9 +49,13 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
+          <Route path='/items/:id' render={() => (
+            <Item user={user} />
+          )} />
           {/*  <Route path='/items' render={() => (
             <Item msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
+
           <Route path='/items/:id' render={() => (
             <Item msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />

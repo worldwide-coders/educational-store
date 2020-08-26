@@ -1,5 +1,5 @@
-import React from './node_modules/react'
-import Footer from './Footer'
+import React from 'react'
+import Footer from '../Footer/Footer'
 
 const Layout = props => (
   <div>
