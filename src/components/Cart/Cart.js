@@ -3,8 +3,8 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const Cart = props => {
-  const [cart, setCart] = useState({})
-  const token = '42a6834da1e606be009e3c8c0ae65280'
+  const [cart, setCart] = useState({ items: [], priceTotal: 0, isPurchased: null })
+  const token = 'c14a0ba1a7363853b57c3cecabec8326'
   const cartId = '5f4690c2df51dfc5dfb80549'
 
   useEffect(() => {
@@ -18,11 +18,23 @@ const Cart = props => {
       .then(res => setCart(res.data.cart))
       .catch(console.error)
   }, [])
-  console.log(cart)
+
+  const removeItem = (object) => {
+    console.log('inside remove item', object)
+  }
+
+  console.log(cart.items)
   console.log('user', token)
+  const itemList = cart.items.map(item => (
+    <li key={item._id}>
+      {item.name}
+      Price: {item.price}
+      <button onClick={event => removeItem(event)}>Remove Item</button>
+    </li>
+  ))
   return (
     <div>
-      {cart.items}
+      {itemList}
       Total Price: ${cart.priceTotal}
     </div>
   )
