@@ -78,8 +78,8 @@ class Item extends Component {
        headers: {
          'Authorization': `Token token= ${this.props.user.token}`
        },
-       method: 'POST',
-       data: 
+       method: 'POST'
+       // data:
      })
      // update their `deleted` state to be `true`
        .then(() => this.setState({ addedToCart: true }))
