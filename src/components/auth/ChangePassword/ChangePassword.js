@@ -7,6 +7,8 @@ import messages from '../../AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+//  import Layout from './../../../components/shared/Layout/Layout'
+
 class ChangePassword extends Component {
   constructor () {
     super()
@@ -47,6 +49,7 @@ class ChangePassword extends Component {
     const { oldPassword, newPassword } = this.state
 
     return (
+      //  <Layout>
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           <h3>Change Password</h3>
@@ -82,6 +85,7 @@ class ChangePassword extends Component {
           </Form>
         </div>
       </div>
+    //  </Layout>
     )
   }
 }
