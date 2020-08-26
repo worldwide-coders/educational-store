@@ -52,18 +52,18 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
-          <Route path='/items/:id' render={() => (
+          <Route exact path='/items/:id' render={() => (
             <Item user={user} />
           )} />
-          <Route path='/items' render={() => (
+          <Route exact path='/items' render={() => (
             <Items user={user} />
           )} />
 
           {/* <Route path='/carts' render={() => (
             <Item msgAlert={this.msgAlert} setUser={this.setUser} />
-          )}/> */>
+          )}/> */}
           <Route path='/carts/:id' render={() => (
-            <Item msgAlert={this.msgAlert} setUser={this.setUser} />
+            <Cart user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />

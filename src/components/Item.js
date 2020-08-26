@@ -30,7 +30,7 @@ class Item extends Component {
     axios({
       url: apiUrl + `/items/${this.props.match.params.id}`,
       headers: {
-        'Authorization': 'Token token=28639d61d9e5348277258cc747610a9c'
+        'Authorization': `Token token=${this.props.user.token}`
       }
     })
 

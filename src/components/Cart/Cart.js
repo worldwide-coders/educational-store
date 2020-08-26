@@ -11,8 +11,8 @@ const Cart = props => {
     axios({
       url: apiUrl + '/carts/' + cartId,
       headers: {
-        // 'Authorization': `Token token=${props.user.token}`
-        'Authorization': `Token token=${token}`
+        'Authorization': `Token token=${props.user.token}`
+        // 'Authorization': `Token token=${token}`
       }
     })
       .then(res => setCart(res.data.cart))
