@@ -5,12 +5,12 @@ import apiUrl from '../../apiConfig'
 // import { addToCart } from './cartFunctions'
 
 const Cart = props => {
-  const [cart, setCart] = useState({ items: [], priceTotal: 0, isPurchased: null })
+  const [cart, setCart] = useState({ lineItems: [], priceTotal: 0, isPurchased: null })
   const [item, setItem] = useState({})
-  const token = 'a1924fc83e0326332ffdc643dddd9760'
-  const cartId = '5f4738bf61765a34032308c9'
-  // const itemId = '5f46bfda96a3d15f7786b05f'
-  const itemId = '5f456bc2af051cbda448d53c'
+  const token = '2a5dd7780e6385525a1e2b3c84ff32f8'
+  const cartId = '5f47dfc3229c9465ad8b93c3'
+  // const itemId = '5f47cf884750eb568367fb5c'
+  const itemId = '5f47d3994750eb568367fb5e'
 
   useEffect(() => {
     axios({
@@ -36,47 +36,62 @@ const Cart = props => {
       .catch(console.error)
   }, [])
 
+  // Increase cart item by one
   const addToCart = (item, cart) => {
-    const index = cart.items.findIndex(lineItem => { return lineItem.item === item._id })
-    let localItem = cart.items[index]
+    // Looks for the index of the item we are looking to increase
+    const index = cart.lineItems.findIndex(lineItem => { return lineItem.item._id === item._id })
+    // Grabs the line item if it exists, otherwise this will be undefined
+    let lineItem = cart.lineItems[index]
     let totalPrice = cart.priceTotal
-    const newItems = [...cart.items]
-    if (!localItem) {
-      localItem = { item: item, qty: 0, price: 0 }
+    // Creates a new array of line items
+    const newLineItems = [...cart.lineItems]
+    // If item doesn't exist in the cart we are going to create a new line item
+    if (!lineItem) {
+      lineItem = { item: item, qty: 0, price: 0 }
     }
-    localItem.qty++
-    localItem.price = item.price * localItem.qty
-    if (index !== -1) {
-      newItems[index] = { item: item, price: localItem.price, qty: localItem.qty }
-    } else {
-      newItems.push({ item: item, price: localItem.price, qty: localItem.qty })
-    }
+    // Increasing quanity and price for the line item
+    lineItem.qty++
+    lineItem.price = item.price * lineItem.qty
     totalPrice += item.price
-    updateCart({ items: newItems, priceTotal: totalPrice })
+    // Index will be -1 if we item doesn't exist in cart yet
+    // If its not -1 we'll update the line item of that index
+    // Otherwise we push a new item to the arry of items
+    if (index !== -1) {
+      newLineItems[index] = { item: item, price: lineItem.price, qty: lineItem.qty }
+    } else {
+      newLineItems.push({ item: item, price: lineItem.price, qty: lineItem.qty })
+    }
+    // Calls helper function to run axios call about the change to cart
+    // Sets local cart to the response data of newly updated cart
+    updateCart({ lineItems: newLineItems, priceTotal: totalPrice })
       .then(res => setCart(res.data.cart))
       .catch(console.error)
   }
 
+  // Decreases cart item by one
   const removeOneFromCart = (item, cart) => {
-    const index = cart.items.findIndex(lineItem => { return lineItem.item === item._id })
-    const localItem = cart.items[index]
+    // Looks for the index of the item we are looking to decrease
+    const index = cart.lineItems.findIndex(lineItem => { return lineItem.item._id === item._id })
+    const lineItem = cart.lineItems[index]
     let totalPrice = cart.priceTotal
-    let newItems = []
-    // if (!localItem) {
-    //   localItem = { item: item, qty: 0, price: 0 }
-    // }
-    localItem.qty--
-    localItem.price = item.price * localItem.qty
-    console.log('qty', localItem.qty)
-    if (localItem.qty === 0) {
-      newItems = cart.items.splice(index, 1)
+    let newLineItems = []
+    // Decreases quanity and price for the line item
+    lineItem.qty--
+    lineItem.price = item.price * lineItem.qty
+    totalPrice -= item.price
+    console.log('qty', lineItem.qty)
+    // If quanity of an item drops to 0 remove line item from the array
+    // Otherwise grab previous array and update that line item
+    if (lineItem.qty === 0) {
+      newLineItems = cart.lineItems.splice(index, 1)
     } else {
-      newItems = [...cart.items]
-      newItems[index] = { item: item, price: localItem.price, qty: localItem.qty }
+      newLineItems = [...cart.lineItems]
+      newLineItems[index] = { item: item, price: lineItem.price, qty: lineItem.qty }
       // newItems.push({ item: item, price: localItem.price, qty: localItem.qty })
     }
-    totalPrice -= item.price
-    updateCart({ items: newItems, priceTotal: totalPrice })
+    // Calls helper function to run axios call about the change to cart
+    // Sets local cart to the response data of newly updated cart
+    updateCart({ lineItems: newLineItems, priceTotal: totalPrice })
       .then(res => setCart(res.data.cart))
       .catch(console.error)
   }
@@ -95,12 +110,13 @@ const Cart = props => {
     }))
   }
 
-  const itemList = cart.items.map(item => {
-    if (item) {
+  // Generates a list if items in cart
+  const itemList = cart.lineItems.map(line => {
+    if (line) {
       return (
-        <li key={item._id}>
-          {item.item.name}
-          <span>Price: {item.price}</span>
+        <li key={line._id}>
+          {line.item.name}
+          <span>Price: {line.price}</span>
           {/* <button onClick={event => removeItem(event)}>Remove Item</button> */}
         </li>
       )
