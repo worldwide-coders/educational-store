@@ -28,8 +28,7 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-
-  <Navbar bg={user ? 'primary' : ''} className={ user ? '' : styles.navbarBackground} variant="dark" expand="md">
+  <Navbar style={{ background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(66,66,128,1) 50%, rgba(46,109,166,1) 83%, rgba(0,212,255,1) 100%)' }} className={ user ? '' : styles.navbarBackground} variant="dark" expand="md">
     <Navbar.Brand>An Educational Supply Donation Store
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
