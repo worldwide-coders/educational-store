@@ -1,10 +1,6 @@
 # Educational-Store: A Description
 
-I came up with the idea for this project from my family background.  Community is a major part of life in the countries my family comes from.  A lot of times people will go over to neighbors and ask for some form of food or spice, as none were available at the market.  They give knowing that one day the other will return the favor.
-
-From this I made a community video game share.  Grander idea would be a site where a community could share any resource they have if they want with their neighbors. Starting with video games or movies you can easily borrow from a neighbor rather than pay a rental fee to a large company.
-
-With this application you can search video game postings in your neighborhood.  Find one that available to borrow and request to borrow it.
+It is known that supplies are needed at the start of the school year. Many times it’s difficult for some students to get the supplies they need to succeed. Often our great teachers have to pickup the slack and get the supplies themselves. Our goal with Educational Store is for the communities to pick up the slack. With Educational Store, we aim to allow someone to purchase school supplies and donate it to a school in their community. Our hope is that, we can help to alleviate some the issue of low school supplies for the students and teachers in need.
 
 ## Important Links
 
