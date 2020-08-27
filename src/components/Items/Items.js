@@ -38,7 +38,7 @@ class Items extends Component {
     const items = this.state.items.map(item => (
       <li key={item._id}>
         <Link to={`/items/${item._id}`}>
-          {item.title}
+          {item.name}
         </Link>
       </li>
     ))
