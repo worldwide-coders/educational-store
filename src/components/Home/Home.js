@@ -7,6 +7,8 @@ import styles from './Home.css'
 // commented out below is a previous (incorrect) carousel skeleton that
 // contains live links of the images
 
+// wanted to wrap carousel in bootstrap container and row with a new row underneath to enter content
+
 function HomeCarousel () {
   const [index, setIndex] = useState(0)
 
