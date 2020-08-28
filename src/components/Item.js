@@ -28,10 +28,10 @@ class Item extends Component {
     // ${this.props.user.token}
     console.log(this.props)
     axios({
-      url: apiUrl + `/items/${this.props.match.params.id}`,
-      headers: {
-        'Authorization': `Token token=${this.props.user.token}`
-      }
+      url: apiUrl + `/items/${this.props.match.params.id}`
+      // headers: {
+      //   'Authorization': `Token token=${this.props.user.token}`
+      // }
     })
 
     // set the `book` state to the `book` data we got back from the response (res.data.book)
