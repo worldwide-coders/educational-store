@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import ItemsCards from '../ItemsCards/ItemsCards'
 // import Layout from '../shared/Layout'
 
 // import the api's url
@@ -38,7 +39,7 @@ class Items extends Component {
     const items = this.state.items.map(item => (
       <li key={item._id}>
         <Link to={`/items/${item._id}`}>
-          {item.name}
+          <ItemsCards />
         </Link>
       </li>
     ))
