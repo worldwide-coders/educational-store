@@ -11,6 +11,7 @@ import SignOut from '../auth/SignOut/SignOut'
 import ChangePassword from '../auth/ChangePassword/ChangePassword'
 import Item from '../Item'
 import Items from '../Items/Items'
+import ItemsCards from '../ItemsCards/ItemsCards'
 
 import Cart from '../Cart/Cart'
 import Checkout from '../Checkout/Checkout'
