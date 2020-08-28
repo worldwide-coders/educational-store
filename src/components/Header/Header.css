@@ -1,10 +1,11 @@
 :local(.navbarBackground) {
   margin: 1rem auto;
   position: relative;
+  -webkit-transition: 1.5s ease;
 }
 :local(.navbarBackground):hover {
   -webkit-transition: 1.5s ease;
-  font-size: 20px;
+  font-size: 1.2rem;
 }
 Nav {
   font-size: 1.1rem;

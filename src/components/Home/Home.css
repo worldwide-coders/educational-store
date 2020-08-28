@@ -1,0 +1,11 @@
+:local(.carouselTextDiv) {
+  background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4));
+  border-radius: 1rem;
+  -webkit-transition: .5s ease;
+  }
+
+:local(.carouselTextDiv):hover {
+    background: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6));
+    -webkit-transition: .5s ease;
+    font-size: 1.1rem;
+  }

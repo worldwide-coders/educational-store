@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Carousel from 'react-bootstrap/Carousel'
+import styles from './Home.css'
 // import homeStyles from './Home/Home.css'
 
 // image source isn't recognizing path to image in file
@@ -22,8 +23,10 @@ function HomeCarousel () {
           alt="First slide"
         />
         <Carousel.Caption>
-          <h3>Donate crafts to your local schools</h3>
-          <p>Schools in your neighborhood may need extra art supplies.</p>
+          <div className={styles.carouselTextDiv}>
+            <h3>Donate crafts to your local schools</h3>
+            <p>Schools in your neighborhood may need extra art supplies.</p>
+          </div>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -34,8 +37,10 @@ function HomeCarousel () {
         />
 
         <Carousel.Caption>
-          <h3>Donate writing utensils</h3>
-          <p>Your local schools can request supplies crucial to the learning environment.</p>
+          <div className={styles.carouselTextDiv}>
+            <h3>Donate writing utensils</h3>
+            <p>Your local schools can request supplies crucial to the learning environment.</p>
+          </div>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -46,10 +51,12 @@ function HomeCarousel () {
         />
 
         <Carousel.Caption>
-          <h3>Donate as much or as little as you can</h3>
-          <p>
+          <div className={styles.carouselTextDiv}>
+            <h3>Donate as much or as little as you can</h3>
+            <p>
               Your gifts will forever impact your community.
-          </p>
+            </p>
+          </div>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
