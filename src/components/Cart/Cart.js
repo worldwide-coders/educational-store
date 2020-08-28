@@ -1,12 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+import TestCheckout from '../Checkout/Checkout'
+
+import Modal from 'react-modal'
 
 // import { addToCart } from './cartFunctions'
 
 const Cart = props => {
   const [cart, setCart] = useState({ lineItems: [], priceTotal: 0, isPurchased: null })
   const [item, setItem] = useState({})
+
+  // lines below were added by Ruby
+  const [modalIsOpen, setIsOpen] = useState(false)
+  const openModal = () => {
+    setIsOpen(true)
+  }
+
+  function closeModal () {
+    setIsOpen(false)
+  }
+  // lines above were added by Ruby
+
   const token = '66415b6848b64a2d54d618a94eaa5239'
   const cartId = '5f47dfc3229c9465ad8b93c3'
   // const itemId = '5f47cf884750eb568367fb5c'
@@ -129,7 +144,17 @@ const Cart = props => {
       Total Price: ${cart.priceTotal}
       <button onClick={() => console.log(addToCart(item, cart))}>Increase Item</button>
       <button onClick={() => console.log(removeOneFromCart(item, cart))}>Decrease Item</button>
-      <button onClick>Checkout</button>
+      <button onClick={openModal}>Checkout</button>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        // style={customStyles}
+        contentLabel="Example Modal"
+      >
+
+        <button onClick={closeModal}>close</button>
+        <TestCheckout />
+      </Modal>
     </div>
   )
 }
