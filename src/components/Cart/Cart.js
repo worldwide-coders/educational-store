@@ -3,7 +3,6 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 // import { addToCart } from './cartFunctions'
-import checkoutModal from '.../sdfj'
 
 const Cart = props => {
   const [cart, setCart] = useState({ lineItems: [], priceTotal: 0, isPurchased: null })
