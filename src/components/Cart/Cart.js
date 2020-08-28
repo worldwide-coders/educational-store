@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import TestCheckout from '../Checkout/Checkout'
@@ -8,8 +8,8 @@ import Modal from 'react-modal'
 // import { addToCart } from './cartFunctions'
 
 const Cart = props => {
-  const [cart, setCart] = useState({ lineItems: [], priceTotal: 0, isPurchased: null })
-  const [item, setItem] = useState({})
+  // const [cart, setCart] = useState({ lineItems: [], priceTotal: 0, isPurchased: null })
+  // const [item, setItem] = useState({})
 
   // lines below were added by Ruby
   const [modalIsOpen, setIsOpen] = useState(false)
@@ -22,8 +22,8 @@ const Cart = props => {
   }
   // lines above were added by Ruby
 
-  const token = '66415b6848b64a2d54d618a94eaa5239'
-  const cartId = '5f47dfc3229c9465ad8b93c3'
+  // const token = '66415b6848b64a2d54d618a94eaa5239'
+  // const cartId = '5f47dfc3229c9465ad8b93c3'
   // const itemId = '5f47cf884750eb568367fb5c'
   // const itemId = '5f47d3994750eb568367fb5e'
 
@@ -144,10 +144,9 @@ const Cart = props => {
   // }
   return (
     <div>
-      {itemList}
-      Total Price: ${cart.priceTotal}
-      <button onClick={() => console.log(addToCart(item, cart))}>Increase Item</button>
-      <button onClick={() => console.log(removeOneFromCart(item, cart))}>Decrease Item</button>
+      {console.log('len ', props.cart.lineItems.length)}
+      {props.cart.lineItems.length === 0 ? emptyCart : itemList}
+      Total Price: ${props.cart.priceTotal.toFixed(2)}
       <button onClick={openModal}>Checkout</button>
       <Modal
         isOpen={modalIsOpen}
