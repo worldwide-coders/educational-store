@@ -28,7 +28,6 @@ export const addToCart = (item, cart) => {
   updateCart({ items: newItems, priceTotal: totalPrice })
     .then(res => { res.data.cart })
     .catch(console.error)
-  console.log(newCart)
   // return newCart
 }
 

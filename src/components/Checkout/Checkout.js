@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js'
 import './Checkout.css'
+// import axios from 'axios'
+// import apiUrl from '../../apiConfig'
 
 const CARD_OPTIONS = {
   iconStyle: 'solid',
@@ -132,6 +134,13 @@ const CheckoutForm = () => {
     } else {
       setPaymentMethod(payload.paymentMethod)
     }
+    // axios({
+    //   url: apiUrl + '/pay',
+    //   method: 'POST',
+    //   body: ({ payment_intent_id: result.paymentIntent.id })
+    // }).then(function (confirmResult) {
+    //   return confirmResult.json()
+    // }).then(handleServerResponse)
   }
 
   const reset = () => {

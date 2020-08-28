@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import TestCheckout from '../Checkout/Checkout'
+import emptyCartLogo from './empty-cart.png'
 
 import Modal from 'react-modal'
 
@@ -94,7 +95,6 @@ const Cart = props => {
     lineItem.qty--
     lineItem.price = item.price * lineItem.qty
     totalPrice -= item.price
-    console.log('qty', lineItem.qty)
     // If quanity of an item drops to 0 remove line item from the array
     // Otherwise grab previous array and update that line item
     if (lineItem.qty === 0) {
@@ -128,15 +128,15 @@ const Cart = props => {
 
   // Generates a list if items in cart
   // if (props.carts) {
-  const emptyCart = <div><img src='public/images/empty-cart.png' /></div>
+  const emptyCart = <div><img src={emptyCartLogo} /><p>Cart is empty.  Please donate!</p></div>
   const itemList = props.cart.lineItems.map(line => {
     if (line) {
       return (
         <li key={line._id}>
           {line.item.name}
           <span>Price: {line.price}</span>
-          <button onClick={() => console.log(addToCart(line.item, props.cart))}>Increase Item</button>
-          <button onClick={() => console.log(removeOneFromCart(line.item, props.cart))}>Decrease Item</button>
+          <button onClick={() => (addToCart(line.item, props.cart))}>Increase Item</button>
+          <button onClick={() => (removeOneFromCart(line.item, props.cart))}>Decrease Item</button>
         </li>
       )
     }
@@ -144,7 +144,6 @@ const Cart = props => {
   // }
   return (
     <div>
-      {console.log('len ', props.cart.lineItems.length)}
       {props.cart.lineItems.length === 0 ? emptyCart : itemList}
       Total Price: ${props.cart.priceTotal.toFixed(2)}
       <button onClick={openModal}>Checkout</button>

@@ -26,7 +26,6 @@ class Item extends Component {
     // make a request to get the book, with the current routes'id
     // axios(`${apiUrl}/items/${this.props.match.params.id}`)
     // ${this.props.user.token}
-    console.log(this.props)
     axios({
       url: apiUrl + `/items/${this.props.match.params.id}`
       // headers: {
@@ -37,7 +36,6 @@ class Item extends Component {
     // set the `book` state to the `book` data we got back from the response (res.data.book)
 
       .then(res => {
-        console.log('WE MADE IT HERE')
         this.setState({ item: res.data.item })
       })
       .catch(console.error)
@@ -75,7 +73,6 @@ class Item extends Component {
   // Increase cart item by one
   addToCart = (item, cart) => {
     // Looks for the index of the item we are looking to increase
-    console.log('add', cart)
     const index = cart.lineItems.findIndex(lineItem => { return lineItem.item._id === item._id })
     // Grabs the line item if it exists, otherwise this will be undefined
     let lineItem = cart.lineItems[index]
@@ -106,7 +103,6 @@ class Item extends Component {
   }
 
   updateCart = (cart) => {
-    console.log('just before', cart)
     return (axios({
       url: apiUrl + '/carts/' + this.props.cart._id,
       method: 'PATCH',
