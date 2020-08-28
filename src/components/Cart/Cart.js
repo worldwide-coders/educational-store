@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import TestCheckout from '../Checkout/Checkout'
@@ -25,31 +25,31 @@ const Cart = props => {
   const token = '66415b6848b64a2d54d618a94eaa5239'
   const cartId = '5f47dfc3229c9465ad8b93c3'
   // const itemId = '5f47cf884750eb568367fb5c'
-  const itemId = '5f47d3994750eb568367fb5e'
+  // const itemId = '5f47d3994750eb568367fb5e'
 
   useEffect(() => {
     axios({
-      url: apiUrl + '/carts/' + cartId,
+      url: apiUrl + '/carts/' + props.cart.id,
       headers: {
-        // 'Authorization': `Token token=${props.user.token}`
-        'Authorization': `Token token=${token}`
+        'Authorization': `Token token=${props.user.token}`
+        // 'Authorization': `Token token=${token}`
       }
     })
-      .then(res => setCart(res.data.cart))
+      .then(res => props.setCart(res.data.cart))
       .catch(console.error)
   }, [])
   // For tests
-  useEffect(() => {
-    axios({
-      url: apiUrl + '/items/' + itemId,
-      headers: {
-        // 'Authorization': `Token token=${props.user.token}`
-        'Authorization': `Token token=${token}`
-      }
-    })
-      .then(res => setItem(res.data.item))
-      .catch(console.error)
-  }, [])
+  // useEffect(() => {
+  //   axios({
+  //     url: apiUrl + '/items/' + itemId,
+  //     headers: {
+  //       // 'Authorization': `Token token=${props.user.token}`
+  //       'Authorization': `Token token=${token}`
+  //     }
+  //   })
+  //     .then(res => setItem(res.data.item))
+  //     .catch(console.error)
+  // }, [])
 
   // Increase cart item by one
   const addToCart = (item, cart) => {
@@ -72,14 +72,14 @@ const Cart = props => {
     // If its not -1 we'll update the line item of that index
     // Otherwise we push a new item to the arry of items
     if (index !== -1) {
-      newLineItems[index] = { item: item, price: lineItem.price, qty: lineItem.qty }
+      newLineItems[index] = { item: item, price: lineItem.price.toFixed(2), qty: lineItem.qty }
     } else {
-      newLineItems.push({ item: item, price: lineItem.price, qty: lineItem.qty })
+      newLineItems.push({ item: item, price: lineItem.price.toFixed(2), qty: lineItem.qty })
     }
     // Calls helper function to run axios call about the change to cart
     // Sets local cart to the response data of newly updated cart
-    updateCart({ lineItems: newLineItems, priceTotal: totalPrice })
-      .then(res => setCart(res.data.cart))
+    updateCart({ lineItems: newLineItems, priceTotal: totalPrice.toFixed(2) })
+      .then(res => props.setCart(res.data.cart))
       .catch(console.error)
   }
 
@@ -98,26 +98,27 @@ const Cart = props => {
     // If quanity of an item drops to 0 remove line item from the array
     // Otherwise grab previous array and update that line item
     if (lineItem.qty === 0) {
-      newLineItems = cart.lineItems.splice(index, 1)
+      newLineItems = [...cart.lineItems]
+      newLineItems.splice(index, 1)
     } else {
       newLineItems = [...cart.lineItems]
-      newLineItems[index] = { item: item, price: lineItem.price, qty: lineItem.qty }
+      newLineItems[index] = { item: item, price: lineItem.price.toFixed(2), qty: lineItem.qty }
       // newItems.push({ item: item, price: localItem.price, qty: localItem.qty })
     }
     // Calls helper function to run axios call about the change to cart
     // Sets local cart to the response data of newly updated cart
-    updateCart({ lineItems: newLineItems, priceTotal: totalPrice })
-      .then(res => setCart(res.data.cart))
+    updateCart({ lineItems: newLineItems, priceTotal: totalPrice.toFixed(2) })
+      .then(res => props.setCart(res.data.cart))
       .catch(console.error)
   }
 
   const updateCart = (cart) => {
     return (axios({
-      url: apiUrl + '/carts/' + cartId,
+      url: apiUrl + '/carts/' + props.cart.id,
       method: 'PATCH',
       headers: {
-        // 'Authorization': `Token token=${props.user.token}`
-        'Authorization': `Token token=${token}`
+        'Authorization': `Token token=${props.user.token}`
+        // 'Authorization': `Token token=${token}`
       },
       data: {
         cart: cart
@@ -126,18 +127,21 @@ const Cart = props => {
   }
 
   // Generates a list if items in cart
-  const itemList = cart.lineItems.map(line => {
+  // if (props.carts) {
+  const emptyCart = <div><img src='public/images/empty-cart.png' /></div>
+  const itemList = props.cart.lineItems.map(line => {
     if (line) {
       return (
         <li key={line._id}>
           {line.item.name}
           <span>Price: {line.price}</span>
-          {/* <button onClick={event => removeItem(event)}>Remove Item</button> */}
+          <button onClick={() => console.log(addToCart(line.item, props.cart))}>Increase Item</button>
+          <button onClick={() => console.log(removeOneFromCart(line.item, props.cart))}>Decrease Item</button>
         </li>
       )
     }
   })
-  console.log('stat ie ', cart)
+  // }
   return (
     <div>
       {itemList}

@@ -3,11 +3,11 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import styles from './Header.css'
 
-const authenticatedOptions = (
+const authenticatedOptions = (cart) => (
   <Fragment>
     <Nav.Link href="#change-password">Change Password</Nav.Link>
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
-    <Nav.Link href="#carts/:id">My Cart</Nav.Link>
+    <Nav.Link href={`#carts/${cart}`}>My Cart</Nav.Link>
     <Nav.Link href="#carts">All Orders</Nav.Link>
   </Fragment>
 )
@@ -27,7 +27,7 @@ const alwaysOptions = (
   </Fragment>
 )
 
-const Header = ({ user }) => (
+const Header = ({ user, cart }) => (
   <Navbar style={{ background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(66,66,128,1) 50%, rgba(46,109,166,1) 83%, rgba(0,212,255,1) 100%)' }} className={ user ? '' : styles.navbarBackground} variant="dark" expand="md">
     <Navbar.Brand>An Educational Supply Donation Store
     </Navbar.Brand>
@@ -36,7 +36,7 @@ const Header = ({ user }) => (
       <Nav className="ml-auto">
         { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
         { alwaysOptions }
-        { user ? authenticatedOptions : unauthenticatedOptions }
+        { user ? authenticatedOptions(cart) : unauthenticatedOptions }
       </Nav>
     </Navbar.Collapse>
   </Navbar>

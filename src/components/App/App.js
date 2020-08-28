@@ -41,7 +41,7 @@ class App extends Component {
 
     return (
       <Fragment>
-        <Header user={user} />
+        <Header user={user} cart={cart} />
         {msgAlerts.map((msgAlert, index) => (
           <AutoDismissAlert
             key={index}
@@ -70,8 +70,8 @@ class App extends Component {
           {/* <Route path='/carts' render={() => (
             <Item msgAlert={this.msgAlert} setUser={this.setUser} />
           )}/> */}
-          <Route path='/carts/:id' render={() => (
-            <Cart user={user} />
+          <AuthenticatedRoute user={user} path='/carts/:id' render={() => (
+            <Cart user={user} cart={cart} setCart={this.setCart}/>
           )} />
           <Route path='/checkout' render={() => (
             <Checkout user={user} />

@@ -94,13 +94,13 @@ class Item extends Component {
     // If its not -1 we'll update the line item of that index
     // Otherwise we push a new item to the arry of items
     if (index !== -1) {
-      newLineItems[index] = { item: item, price: lineItem.price, qty: lineItem.qty }
+      newLineItems[index] = { item: item, price: lineItem.price.toFixed(2), qty: lineItem.qty }
     } else {
-      newLineItems.push({ item: item, price: lineItem.price, qty: lineItem.qty })
+      newLineItems.push({ item: item, price: lineItem.price.toFixed(2), qty: lineItem.qty })
     }
     // Calls helper function to run axios call about the change to cart
     // Sets local cart to the response data of newly updated cart
-    this.updateCart({ lineItems: newLineItems, priceTotal: totalPrice })
+    this.updateCart({ lineItems: newLineItems, priceTotal: totalPrice.toFixed(2) })
       .then(res => this.props.setCart(res.data.cart))
       .catch(console.error)
   }
