@@ -13,6 +13,7 @@ import Item from '../Item'
 import Items from '../Items/Items'
 
 import Cart from '../Cart/Cart'
+import Checkout from '../Checkout/Checkout'
 
 class App extends Component {
   constructor () {
@@ -20,11 +21,14 @@ class App extends Component {
 
     this.state = {
       user: null,
+      cart: null,
       msgAlerts: []
     }
   }
 
   setUser = user => this.setState({ user })
+
+  setCart = cart => this.setState({ cart })
 
   clearUser = () => this.setState({ user: null })
 
@@ -33,7 +37,7 @@ class App extends Component {
   }
 
   render () {
-    const { msgAlerts, user } = this.state
+    const { msgAlerts, user, cart } = this.state
 
     return (
       <Fragment>
@@ -54,10 +58,10 @@ class App extends Component {
             <HomeCarousel />
           )} />
           <Route path='/sign-in' render={() => (
-            <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
+            <SignIn msgAlert={this.msgAlert} setUser={this.setUser} setCart={this.setCart} />
           )} />
-          <Route exact path='/items/:id' render={() => (
-            <Item user={user} />
+          <AuthenticatedRoute user={user} exact path='/items/:id' render={() => (
+            <Item user={user} cart={cart} setCart={this.setCart} />
           )} />
           <Route exact path='/items' render={() => (
             <Items user={user} />
@@ -68,6 +72,9 @@ class App extends Component {
           )}/> */}
           <Route path='/carts/:id' render={() => (
             <Cart user={user} />
+          )} />
+          <Route path='/checkout' render={() => (
+            <Checkout user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />

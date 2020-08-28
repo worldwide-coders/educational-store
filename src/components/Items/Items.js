@@ -25,10 +25,10 @@ class Items extends Component {
   componentDidMount () {
     // make a GET request for all of the items
     axios({
-      url: `${apiUrl}/items`,
-      headers: {
-        'Authorization': `Token token=${this.props.user.token}`
-      }
+      url: `${apiUrl}/items`
+      // headers: {
+      //   'Authorization': `Token token=${this.props.user.token}`
+      // }
     })
       .then(res => this.setState({ items: res.data.items }))
       .catch(console.error)

@@ -7,7 +7,7 @@ import apiUrl from '../../apiConfig'
 const Cart = props => {
   const [cart, setCart] = useState({ lineItems: [], priceTotal: 0, isPurchased: null })
   const [item, setItem] = useState({})
-  const token = '2a5dd7780e6385525a1e2b3c84ff32f8'
+  const token = '66415b6848b64a2d54d618a94eaa5239'
   const cartId = '5f47dfc3229c9465ad8b93c3'
   // const itemId = '5f47cf884750eb568367fb5c'
   const itemId = '5f47d3994750eb568367fb5e'
@@ -129,6 +129,7 @@ const Cart = props => {
       Total Price: ${cart.priceTotal}
       <button onClick={() => console.log(addToCart(item, cart))}>Increase Item</button>
       <button onClick={() => console.log(removeOneFromCart(item, cart))}>Decrease Item</button>
+      <button onClick>Checkout</button>
     </div>
   )
 }

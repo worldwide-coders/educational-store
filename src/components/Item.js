@@ -72,48 +72,84 @@ class Item extends Component {
   // </Link>
   // *********************************
 
-   addToCart = () => {
-     axios({
-       url: `${apiUrl}/carts/${this.props.cartId}`,
-       headers: {
-         'Authorization': `Token token= ${this.props.user.token}`
-       },
-       method: 'POST'
-       // data:
-     })
-     // update their `deleted` state to be `true`
-       .then(() => this.setState({ addedToCart: true }))
-       .catch(console.error)
-     // return If cart button is clicked, this.setState({ addedToCart: true })
-   }
+  // Increase cart item by one
+  addToCart = (item, cart) => {
+    // Looks for the index of the item we are looking to increase
+    console.log('add', cart)
+    const index = cart.lineItems.findIndex(lineItem => { return lineItem.item._id === item._id })
+    // Grabs the line item if it exists, otherwise this will be undefined
+    let lineItem = cart.lineItems[index]
+    let totalPrice = cart.priceTotal
+    // Creates a new array of line items
+    const newLineItems = [...cart.lineItems]
+    // If item doesn't exist in the cart we are going to create a new line item
+    if (!lineItem) {
+      lineItem = { item: item, qty: 0, price: 0 }
+    }
+    // Increasing quanity and price for the line item
+    lineItem.qty++
+    lineItem.price = item.price * lineItem.qty
+    totalPrice += item.price
+    // Index will be -1 if we item doesn't exist in cart yet
+    // If its not -1 we'll update the line item of that index
+    // Otherwise we push a new item to the arry of items
+    if (index !== -1) {
+      newLineItems[index] = { item: item, price: lineItem.price, qty: lineItem.qty }
+    } else {
+      newLineItems.push({ item: item, price: lineItem.price, qty: lineItem.qty })
+    }
+    // Calls helper function to run axios call about the change to cart
+    // Sets local cart to the response data of newly updated cart
+    this.updateCart({ lineItems: newLineItems, priceTotal: totalPrice })
+      .then(res => this.props.setCart(res.data.cart))
+      .catch(console.error)
+  }
 
-   render () {
-     // destructure our book property out of state
-     const { item, addedToCart } = this.state
+  updateCart = (cart) => {
+    console.log('just before', cart)
+    return (axios({
+      url: apiUrl + '/carts/' + this.props.cart._id,
+      method: 'PATCH',
+      headers: {
+        // 'Authorization': `Token token=${props.user.token}`
+        'Authorization': `Token token=${this.props.user.token}`
+      },
+      data: {
+        cart: {
+          lineItems: cart.lineItems,
+          priceTotal: cart.priceTotal
+        }
+      }
+    }))
+  }
 
-     // if we don't have an item (item is empty object)
-     if (!item) {
-       return <p>Loading...</p>
-     }
-     if (addedToCart) {
-       //  if addedToCart is true,
-       return <Redirect to={{
-         // Redirect to the items page ('/')
-         pathname: '/items',
-         // Pass along a message, in state, that we can show
-         state: { message: 'Item was added to your cart successfully' }
-       }} />
-     }
+  render () {
+    // destructure our book property out of state
+    const { item, addedToCart } = this.state
 
-     return (
-       <div>
-         <h4>Name: {item.name}</h4>
-         <p>Price: {item.price}</p>
-         <CartButton addToCart={this.addToCart} />
-         <Link to='/items'>Back to all items</Link>
-       </div>
-     )
-   }
+    // if we don't have an item (item is empty object)
+    if (!item) {
+      return <p>Loading...</p>
+    }
+    if (addedToCart) {
+      //  if addedToCart is true,
+      return <Redirect to={{
+        // Redirect to the items page ('/')
+        pathname: '/items',
+        // Pass along a message, in state, that we can show
+        state: { message: 'Item was added to your cart successfully' }
+      }} />
+    }
+
+    return (
+      <div>
+        <h4>Name: {item.name}</h4>
+        <p>Price: {item.price}</p>
+        <CartButton addToCart={() => this.addToCart(item, this.props.cart)} />
+        <Link to='/items'>Back to all items</Link>
+      </div>
+    )
+  }
 }
 
 export default withRouter(Item)

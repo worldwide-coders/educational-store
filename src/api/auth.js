@@ -38,6 +38,22 @@ export const signOut = user => {
   })
 }
 
+export const createCart = user => {
+  console.log('create', user.token)
+  return axios({
+    url: apiUrl + '/carts',
+    method: 'POST',
+    headers: {
+      'Authorization': `Token token=${user.token}`
+    },
+    data: {
+      cart: {
+        priceTotal: 0
+      }
+    }
+  })
+}
+
 export const changePassword = (passwords, user) => {
   return axios({
     url: apiUrl + '/change-password',
