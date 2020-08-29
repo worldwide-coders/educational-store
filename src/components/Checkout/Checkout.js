@@ -22,7 +22,6 @@ const CheckoutForm = props => {
   const [processing, setProcessing] = useState(false)
   const [paymentMethod, setPaymentMethod] = useState(null)
   const [billingDetails, setBillingDetails] = useState({
-    email: '',
     name: ''
   })
 
@@ -35,6 +34,9 @@ const CheckoutForm = props => {
     axios({
       url: apiUrl + '/create-payment-intent',
       method: 'POST',
+      headers: {
+        'Authorization': `Token token=${props.user.token}`
+      },
       data: {
         cartId: props.cart._id,
         currency: 'usd'
@@ -111,7 +113,7 @@ const CheckoutForm = props => {
     setError(null)
     setProcessing(false)
     setPaymentMethod(null)
-    setBillingDetails({ email: '', name: '' })
+    setBillingDetails({ name: '' })
   }
 
   return paymentMethod ? (
@@ -120,7 +122,7 @@ const CheckoutForm = props => {
         Payment successful
       </div>
       <div className="ResultMessage">
-        Thanks for you donation!  It is greatly appreciated. This donation was done with Stripe Elements demo.
+        Thank you {billingDetails.name} for you donation!  It is greatly appreciated. This donation was done with Stripe Elements demo.
         Dont worry no money was actually charged, but we generated a PaymentMethod: {paymentMethod.id} for the amount of
         ${(paymentMethod.amount / 100).toFixed(2)}
       </div>
@@ -141,7 +143,7 @@ const CheckoutForm = props => {
             setBillingDetails({ ...billingDetails, name: e.target.value })
           }}
         />
-        <Field
+        {/* <Field
           label="Email"
           id="email"
           type="email"
@@ -152,7 +154,7 @@ const CheckoutForm = props => {
           onChange={(e) => {
             setBillingDetails({ ...billingDetails, email: e.target.value })
           }}
-        />
+        /> */}
       </fieldset>
       <fieldset className="FormGroup">
         <CardField
@@ -169,15 +171,5 @@ const CheckoutForm = props => {
     </form>
   )
 }
-
-// const TestCheckout = props => {
-//   return (
-//     <div className="AppWrapper">
-//       <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
-//         <CheckoutForm cart={props.cart} />
-//       </Elements>
-//     </div>
-//   )
-// }
 
 export default CheckoutForm

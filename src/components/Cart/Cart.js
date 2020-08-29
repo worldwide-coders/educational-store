@@ -135,7 +135,7 @@ const Cart = props => {
     <div className = 'cart'>
       {props.cart.lineItems.length === 0 ? emptyCart : itemList}
       Total Price: ${props.cart.priceTotal.toFixed(2)}
-      <button onClick={openModal}>Checkout</button>
+      {props.cart.lineItems.length === 0 ? '' : <button onClick={openModal}>Checkout</button>}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
