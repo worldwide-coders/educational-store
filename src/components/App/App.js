@@ -13,7 +13,7 @@ import Item from '../Item'
 import Items from '../Items/Items'
 
 import Cart from '../Cart/Cart'
-import Checkout from '../Checkout/Checkout'
+// import Checkout from '../Checkout/Checkout'
 
 class App extends Component {
   constructor () {
@@ -73,9 +73,9 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/carts/:id' render={() => (
             <Cart user={user} cart={cart} setCart={this.setCart}/>
           )} />
-          <Route path='/checkout' render={() => (
+          {/* <AuthenticatedRoute path='/checkout' render={() => (
             <Checkout user={user} />
-          )} />
+          )} /> */}
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
           )} />

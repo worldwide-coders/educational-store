@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react'
+import Modal from 'react-modal'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import TestCheckout from '../Checkout/Checkout'
+
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
+
+import CheckoutForm from '../Checkout/Checkout'
 import emptyCartLogo from './empty-cart.png'
-
-import Modal from 'react-modal'
-
-// import { addToCart } from './cartFunctions'
+import { ELEMENTS_OPTIONS } from '../Checkout/CheckoutStyles'
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh')
 
 const Cart = props => {
   // const [cart, setCart] = useState({ lineItems: [], priceTotal: 0, isPurchased: null })
@@ -23,11 +28,6 @@ const Cart = props => {
   }
   // lines above were added by Ruby
 
-  // const token = '66415b6848b64a2d54d618a94eaa5239'
-  // const cartId = '5f47dfc3229c9465ad8b93c3'
-  // const itemId = '5f47cf884750eb568367fb5c'
-  // const itemId = '5f47d3994750eb568367fb5e'
-
   useEffect(() => {
     axios({
       url: apiUrl + '/carts/' + props.cart.id,
@@ -39,18 +39,6 @@ const Cart = props => {
       .then(res => props.setCart(res.data.cart))
       .catch(console.error)
   }, [])
-  // For tests
-  // useEffect(() => {
-  //   axios({
-  //     url: apiUrl + '/items/' + itemId,
-  //     headers: {
-  //       // 'Authorization': `Token token=${props.user.token}`
-  //       'Authorization': `Token token=${token}`
-  //     }
-  //   })
-  //     .then(res => setItem(res.data.item))
-  //     .catch(console.error)
-  // }, [])
 
   // Increase cart item by one
   const addToCart = (item, cart) => {
@@ -151,11 +139,14 @@ const Cart = props => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         // style={customStyles}
-        contentLabel="Example Modal"
+        contentLabel="Credit Card Form"
       >
 
         <button onClick={closeModal}>close</button>
-        <TestCheckout />
+        {/* <TestCheckout cart={props.cart} /> */}
+        <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
+          <CheckoutForm cart={props.cart} setCart={props.setCart} user={props.user} />
+        </Elements>
       </Modal>
     </div>
   )
