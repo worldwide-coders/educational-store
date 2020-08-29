@@ -6,6 +6,7 @@ import messages from '../../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import './SignIn.css'
 
 class SignIn extends Component {
   constructor () {

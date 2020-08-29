@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ItemsCards from '../ItemsCards/ItemsCards'
+import './Items.css'
 // import Layout from '../shared/Layout'
 
 // import the api's url
