@@ -29,6 +29,7 @@ const Cart = props => {
   // lines above were added by Ruby
 
   useEffect(() => {
+    Modal.setAppElement('.cart')
     axios({
       url: apiUrl + '/carts/' + props.cart.id,
       headers: {
@@ -131,7 +132,7 @@ const Cart = props => {
   })
   // }
   return (
-    <div>
+    <div className = 'cart'>
       {props.cart.lineItems.length === 0 ? emptyCart : itemList}
       Total Price: ${props.cart.priceTotal.toFixed(2)}
       <button onClick={openModal}>Checkout</button>
