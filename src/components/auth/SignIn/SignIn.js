@@ -6,7 +6,7 @@ import messages from '../../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import './SignIn.css'
+import styles from './SignIn.css'
 
 class SignIn extends Component {
   constructor () {
@@ -56,7 +56,7 @@ class SignIn extends Component {
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3>Sign In</h3>
+          <h3 className={styles.textStyle}>Sign In</h3>
           <Form onSubmit={this.onSignIn}>
             <Form.Group controlId="email">
               <Form.Label>Email address</Form.Label>
