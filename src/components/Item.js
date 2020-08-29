@@ -3,6 +3,8 @@ import { Link, Redirect, withRouter } from 'react-router-dom'
 // import Layout from './shared/Layout/Layout'
 import CartButton from './shared/Buttons/CartButton'
 
+import messages from './AutoDismissAlert/messages'
+
 // import the api's url
 import apiUrl from '../apiConfig'
 
@@ -72,6 +74,8 @@ class Item extends Component {
 
   // Increase cart item by one
   addToCart = (item, cart) => {
+    const { msgAlert } = this.props
+
     // Looks for the index of the item we are looking to increase
     const index = cart.lineItems.findIndex(lineItem => { return lineItem.item._id === item._id })
     // Grabs the line item if it exists, otherwise this will be undefined
@@ -99,7 +103,19 @@ class Item extends Component {
     // Sets local cart to the response data of newly updated cart
     this.updateCart({ lineItems: newLineItems, priceTotal: totalPrice.toFixed(2) })
       .then(res => this.props.setCart(res.data.cart))
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: `Added ${item.name} to cart successfully!`,
+        message: messages.addToCartSuccess,
+        variant: 'success'
+      }))
+      .catch(error => {
+        this.setState({ email: '', password: '' })
+        msgAlert({
+          heading: 'Add to Cart failed with error: ' + error.message,
+          message: messages.addToCartFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   updateCart = (cart) => {

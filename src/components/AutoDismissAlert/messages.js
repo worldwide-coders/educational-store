@@ -5,5 +5,7 @@ export default {
   signInFailure: 'Failed to sign in. Check your email and password and try again.',
   signOutSuccess: 'Come back soon!',
   changePasswordSuccess: 'Password changed successfully!',
-  changePasswordFailure: 'Failed to change passwords. Check your old password and try again.'
+  changePasswordFailure: 'Failed to change passwords. Check your old password and try again.',
+  addToCartFailure: 'Cannot add to cart. You are not signed in.',
+  addToCartSuccess: 'You just added something to your cart! Please... keep adding!'
 }
