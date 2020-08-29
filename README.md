@@ -4,20 +4,22 @@ It is known that supplies are needed at the start of the school year. Many times
 
 ## Important Links
 
-- [GitHub API Repo](https://github.com/sebastian-chang/block-share-api)
-- [Deployed API]( https://shrouded-woodland-10861.herokuapp.com)
-- [GitHub Repo](https://github.com/sebastian-chang/block-share)
+- [GitHub API Repo](https://github.com/worldwide-coders/educational-store-api)
+- [Deployed API](https://thawing-basin-32932.herokuapp.com)
+- [GitHub Repo](https://github.com/worldwide-coders/educational-store)
 - [Deployed Client](https://sebastian-chang.github.io/block-share)
 
 ## Planning Story
 
 - Create the API models and routes.
 - Test API connections.
-- Build basic front end web pages.
+- Build basic front end components.
 - Test front end to back end connection.
+- Integrate Stripe API to handle credit a
 - Create styling for front end objects.
 - Test, debug, troubleshoot and debug.
-- [Gantt Chart](https://docs.google.com/spreadsheets/d/1z5f2GSEPifRBP3DsE0RQL32uXRSbROqJ7u_IqC4iMV8/edit#gid=1115838130)
+- Reach for stretch goals
+- [Gantt Chart](https://docs.google.com/spreadsheets/d/1xvZ6CXHSKE_Q4nan2bH51XatrNw7pyXpcjKPrnNClT8/edit?usp=sharing)
 
 ### User Stories
 
@@ -26,14 +28,13 @@ It is known that supplies are needed at the start of the school year. Many times
 - As a signed in user, I would like to change password.
 - As a signed in user, I would like to sign out.
 - As an unregistered user, I would like to see all of the products.
-- As a signed in user, I would like to add and remove products from a shopping
-  cart.
+- As a signed in user, I would like to add an item to a shopping cart.
+- As a signed in user, I would like increase or decrease the number of items in my cart.
 - As a signed in user, I would like to purchase products in a shopping cart
   using [Stripe](https://stripe.com/docs/checkout).
-- As a signed in user, I would like to see all my past orders.
 
 ### Reach Goal(s)
-
+- As a signed in user, I would like to see all my past orders.
 - Build a search feature so that people can search for specific products by name.
 - Create a feature that allows for item donation
 - Create a feature that allows the user to choose which school will receive their donation
