@@ -60,7 +60,7 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} setCart={this.setCart} />
           )} />
-          <Route user={user} exact path='/items/:id' render={() => (
+          <AuthenticatedRoute user={user} exact path='/items/:id' render={() => (
             <Item user={user} msgAlert={this.msgAlert} cart={cart} setCart={this.setCart} />
           )} />
           <Route exact path='/items' render={() => (
