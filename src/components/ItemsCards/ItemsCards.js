@@ -1,11 +1,12 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
+import Item from '../Item'
 // <Button variant="primary">Go somewhere</Button>
 
 const ItemsCards = ({ card }) => {
   return (
     <React.Fragment className="EducationalStore">
-      <Card style={{ width: '18rem' }} key={card._id}>
+      <Card style={{ width: '18rem' }} key={Item._id}>
         <Card.Img variant="top" src={card.imageUrl} />
         <Card.Body>
           <Card.Title>{card.name}</Card.Title>
