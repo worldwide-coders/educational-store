@@ -20,3 +20,4 @@
 //     </div>
 //   )
 // }
+// export default CardFeatures

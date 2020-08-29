@@ -37,19 +37,17 @@ class Items extends Component {
 
   render () {
     const items = this.state.items.map(item => (
-      <li key={item._id}>
-        <Link to={`/items/${item._id}`}>
-          <ItemsCards card={item} />
-        </Link>
-      </li>
+      <Link key='item._id' to={`/items/${item._id}`}>
+        <ItemsCards card={item} />
+      </Link>
     ))
 
     return (
       <div>
         <h4>Items</h4>
-        <ul>
+        <div className='container col-sm-12'>
           {items}
-        </ul>
+        </div>
       </div>
     )
   }
