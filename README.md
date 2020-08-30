@@ -7,7 +7,7 @@ Some communities are fortunate to have adequate resources in their public school
 - [GitHub API Repo](https://github.com/worldwide-coders/educational-store-api)
 - [Deployed API](https://thawing-basin-32932.herokuapp.com)
 - [GitHub Repo](https://github.com/worldwide-coders/educational-store)
-- [Deployed Client](https://worldwide-coders.github.io/educational-store/#/)
+- [Deployed Client](https://sebastian-chang.github.io/block-share)
 
 ## Planning Story
 
@@ -32,14 +32,14 @@ Some communities are fortunate to have adequate resources in their public school
 - As a signed in user, I would like increase or decrease the number of items in my cart.
 - As a signed in user, I would like to purchase products in a shopping cart
   using [Stripe](https://stripe.com/docs/checkout).
+- As a signed in user, I would like to see all my past orders.
 
 ### Reach Goal(s)
-- As a signed in user, I would like to see all my past orders.
 - Build a search feature so that people can search for specific products by name.
 - Create a feature that allows for item donation
 - Create a feature that allows the user to choose which school will receive their donation
 - Create a feature that shows the total amount of items purchased (donated money)
-- Inventory would be editable by an admin user
+- Item inventory would be editable by an admin user
 
 ### Technologies Used
 
@@ -54,22 +54,16 @@ Some communities are fortunate to have adequate resources in their public school
 - MongoDB
 
 ### Unsolved Problems
-
-- Still need to add addition error messages.  Add additional console platforms and better icons for each platform.
-- Would like to eventually like to add a search bar feature, for any game title, platform or rating.
-- Would like to have additional resources to share, such as books, movies, tools etc.
-- Would like to add thank comments to each resource.
-- Would like to actually send a request to the owner of the resource, so that a person can borrow said item.
+- More responsive design with all views maximizing Bootstrap potential
+- Add "categories" to the Item schema
+- Search bar feature to find items by name and category
+- Integrate School component so users know where items are donated
+- Create a school admin login type to be able to populate school and school store
 
 ## Images
 
 #### Wireframe:
 
-![wireframe_home](https://i.imgur.com/BUdwuSM.png)
-![wireframe_sign](https://i.imgur.com/6EKrtLd.png)
-![wireframe_items](https://i.imgur.com/hfjnGcj.png)
-![wireframe_find_item](https://i.imgur.com/DJap7q2.png)
-![wireframe_my_cart](https://i.imgur.com/Bzne2Nj.png)
-![wireframe_all_orders](https://i.imgur.com/VpQIY6p.png)
+![wireframe](https://github.com/sebastian-chang/block-share/blob/master/public/images/Block-Share-Wireframe.jpg)
 
 ---
