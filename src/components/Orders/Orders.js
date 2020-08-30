@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
@@ -32,9 +32,20 @@ class Orders extends Component {
       .catch(console.error)
   }
   render () {
-    const cartList = this.state.carts.map(cart => (
-      <h2 key={cart._id}>Price Total: {cart.priceTotal}</h2>
-    ))
+    const cartList = this.state.carts.map(cart => {
+      const lineItems = cart.lineItems.map(lineItem => (
+        <Fragment key={lineItem._id}>
+          <div>Number of items: {lineItem.qty}</div>
+          <div>Item description: {lineItem.item.name}</div>
+        </Fragment>
+      ))
+      return (
+        <div key={cart._id}>
+          <h2>{lineItems}</h2>
+          <h2>Price Total: {cart.priceTotal}<br/></h2>
+        </div>
+      )
+    })
     return (
       <div>
         <h4>All orders</h4>
