@@ -132,9 +132,15 @@ const Cart = props => {
         <Card className='lineItem' key={line._id}>
           <Card.Header>{line.item.name}<span className='toRight'>Price: ${line.item.price}</span></Card.Header>
           <Card.Body>
+<<<<<<< HEAD
             <Card.Text>{line.item.description}</Card.Text>
             <Button variant='danger' className='btn-sm toRight' onClick={() => (removeOneFromCart(line.item, props.cart))}>Decrease Item</Button>
             <Button variant='success' className='btn-sm toRight' onClick={() => (addToCart(line.item, props.cart))}>Increase Item</Button>
+=======
+            <Card.Text><p>{line.item.description}</p></Card.Text>
+            <Button variant='secondary'className='btn-sm toRight' onClick={() => (removeOneFromCart(line.item, props.cart))}>Decrease Item</Button>
+            <Button variant='primary' className='btn-sm toRight' onClick={() => (addToCart(line.item, props.cart))}>Increase Item</Button>
+>>>>>>> changed button and text colors in cart view
           </Card.Body>
           <Card.Footer className='text-right'>Subtotal (Quantity {line.qty}): ${line.price.toFixed(2)}</Card.Footer>
         </Card>
