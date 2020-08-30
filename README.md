@@ -1,6 +1,6 @@
 # Educational-Store: A Description
 
-It is known that supplies are needed at the start of the school year. Many times it’s difficult for some students to get the supplies they need to succeed. Often our great teachers have to pickup the slack and get the supplies themselves. Our goal with Educational Store is for the communities to pick up the slack. With Educational Store, we aim to allow someone to purchase school supplies and donate it to a school in their community. Our hope is that, we can help to alleviate some the issue of low school supplies for the students and teachers in need.
+Some communities are fortunate to have adequate resources in their public schools, but that is not the case for many people, especially now. On average, teachers spend over $450 on classroom supplies to make up the difference and go the extra mile for their students. Our team's goal with the Educational Store app is to make it easier for community members to help schools in need. With Educational Store, customers can purchase school supplies that are donated on their behalf to a school in need. Our hope is that we can help to alleviate some the issue of low school supplies for the students, teachers, and schools in need.
 
 ## Important Links
 
@@ -15,8 +15,8 @@ It is known that supplies are needed at the start of the school year. Many times
 - Test API connections.
 - Build basic front end components.
 - Test front end to back end connection.
-- Integrate Stripe API to handle credit a
-- Create styling for front end objects.
+- Integrate Stripe API to handle credit card charges
+- Create styling for front end components.
 - Test, debug, troubleshoot and debug.
 - Reach for stretch goals
 - [Gantt Chart](https://docs.google.com/spreadsheets/d/1xvZ6CXHSKE_Q4nan2bH51XatrNw7pyXpcjKPrnNClT8/edit?usp=sharing)
@@ -43,13 +43,13 @@ It is known that supplies are needed at the start of the school year. Many times
 
 ### Technologies Used
 
-- jQuery
+- React
+- Javascript
 - HTML
 - CSS
 - Bootstrap
-- Javascript
 - Express
-- Handlebars
+- Stripe
 - Mongoose
 - MongoDB
 
