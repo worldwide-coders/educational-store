@@ -1,7 +1,17 @@
 import React from 'react'
+import './Footer.css'
+// import github from './github-original-wordmark.svg'
 
 const Footer = () => (
-  <p><a href="https://github.com/worldwide-coders">&#169; 2020 worldWideCoders</a></p>
+  <div>
+    &#169; 2020 worldwidecoders
+    <span className='gitHub'>
+      <a href='https://github.com/worldwide-coders'>
+        <i className="devicon-github-plain-wordmark colored"></i>
+        GitHub Repo
+      </a>
+    </span>
+  </div>
 )
 
 export default Footer

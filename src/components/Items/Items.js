@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ItemsCards from '../ItemsCards/ItemsCards'
 import './Items.css'
-// import Layout from '../shared/Layout'
+import Layout from '../shared/Layout/Layout'
 
 // import the api's url
 import apiUrl from '../../apiConfig'
@@ -44,12 +44,14 @@ class Items extends Component {
     ))
 
     return (
-      <div>
-        <h4>Items</h4>
-        <div className='container col-sm-12'>
-          {items}
+      <Layout>
+        <div>
+          <h4>Items</h4>
+          <div className='container col-sm-12'>
+            {items}
+          </div>
         </div>
-      </div>
+      </Layout>
     )
   }
 }
