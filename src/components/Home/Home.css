@@ -1,13 +1,16 @@
 :local(.carouselTextDiv) {
+  background: rgb(60,60,60);
   background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4));
   border-radius: 1rem;
   transition: .5s ease;
   -webkit-transition: .5s ease;
   }
-
+/*  */
 :local(.carouselTextDiv):hover {
+  background: rgb(60,60,60);
     background: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6));
     transition: .5s ease;
     -webkit-transition: .5s ease;
     font-size: 1.1rem;
   }
+/*  */
