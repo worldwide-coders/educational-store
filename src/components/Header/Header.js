@@ -6,13 +6,16 @@ import styles from './Header.css'
 
 const authenticatedOptions = (cart) => (
   <Fragment>
+    <NavDropdown title="Orders" alignRight id="settings-dropdown">
+      <NavDropdown.Item href={`#carts/${cart}`}>My Cart</NavDropdown.Item>
+      <NavDropdown.Divider />
+      <NavDropdown.Item href="#carts">All Orders</NavDropdown.Item>
+    </NavDropdown>
     <NavDropdown title="Options" alignRight id="settings-dropdown">
       <NavDropdown.Item href="#change-password">Change Password</NavDropdown.Item>
       <NavDropdown.Divider />
       <NavDropdown.Item href="#sign-out">Sign Out</NavDropdown.Item>
     </NavDropdown>
-    <Nav.Link href={`#carts/${cart}`}>My Cart</Nav.Link>
-    <Nav.Link href="#carts">All Orders</Nav.Link>
   </Fragment>
 )
 
@@ -30,7 +33,6 @@ const alwaysOptions = (
   <Fragment>
     <Nav.Link href="#/">Home</Nav.Link>
     <Nav.Link href="#items">Items for Sale</Nav.Link>
-    <Nav.Link href="#items/:id">Find an item</Nav.Link>
   </Fragment>
 )
 
