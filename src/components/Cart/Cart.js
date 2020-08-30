@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Card, Button } from 'react-bootstrap'
 import Modal from 'react-modal'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
@@ -8,6 +9,7 @@ import { Elements } from '@stripe/react-stripe-js'
 
 import CheckoutForm from '../Checkout/Checkout'
 import emptyCartLogo from './empty-cart.png'
+import './Cart.css'
 import { ELEMENTS_OPTIONS } from '../Checkout/CheckoutStyles'
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
@@ -117,25 +119,41 @@ const Cart = props => {
 
   // Generates a list if items in cart
   // if (props.carts) {
-  const emptyCart = <div><img src={emptyCartLogo} /><p>Cart is empty.  Please donate!</p></div>
+  const emptyCart = <div><img className='cartImg' src={emptyCartLogo} /><p>Cart is empty.  Please donate!</p></div>
   const itemList = props.cart.lineItems.map(line => {
     if (line) {
       return (
-        <li key={line._id}>
-          {line.item.name}
-          <span>Price: {line.price}</span>
-          <button onClick={() => (addToCart(line.item, props.cart))}>Increase Item</button>
-          <button onClick={() => (removeOneFromCart(line.item, props.cart))}>Decrease Item</button>
-        </li>
+        // <li key={line._id}>
+        //   {line.item.name}
+        //   <span>Price: {line.price}</span>
+        //   <button onClick={() => (addToCart(line.item, props.cart))}>Increase Item</button>
+        //   <button onClick={() => (removeOneFromCart(line.item, props.cart))}>Decrease Item</button>
+        // </li>
+        <Card className='lineItem'>
+          <Card.Header>{line.item.name}<span className='toRight'>Price: ${line.item.price}</span></Card.Header>
+          <Card.Body>
+            <Card.Text><p>{line.item.description}</p></Card.Text>
+            <Button variant='danger' className='btn-sm toRight' onClick={() => (removeOneFromCart(line.item, props.cart))}>Decrease Item</Button>
+            <Button variant='success' className='btn-sm toRight' onClick={() => (addToCart(line.item, props.cart))}>Increase Item</Button>
+          </Card.Body>
+          <Card.Footer className='text-right'>Subtotal (Quantiy {line.qty}): ${line.price.toFixed(2)}</Card.Footer>
+        </Card>
       )
     }
   })
   // }
   return (
-    <div className = 'cart'>
-      {props.cart.lineItems.length === 0 ? emptyCart : itemList}
-      Total Price: ${props.cart.priceTotal.toFixed(2)}
-      {props.cart.lineItems.length === 0 ? '' : <button onClick={openModal}>Checkout</button>}
+    <div className='cart container'>
+      <div className='row'>
+        <div className='col-sm-8'>
+          {props.cart.lineItems.length === 0 ? emptyCart : itemList}
+        </div>
+        <div className='col-sm-4'>
+          <p><strong>Tax:</strong> Exempt</p>
+          <p><strong>Total Price:</strong> ${props.cart.priceTotal.toFixed(2)}</p>
+          {props.cart.lineItems.length === 0 ? '' : <button onClick={openModal}>Checkout</button>}
+        </div>
+      </div>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
