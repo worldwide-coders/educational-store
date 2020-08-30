@@ -11,6 +11,7 @@ import SignOut from '../auth/SignOut/SignOut'
 import ChangePassword from '../auth/ChangePassword/ChangePassword'
 import Item from '../Item'
 import Items from '../Items/Items'
+import Orders from '../Orders/Orders'
 
 import Cart from '../Cart/Cart'
 // import Checkout from '../Checkout/Checkout'
@@ -67,13 +68,13 @@ class App extends Component {
             <Items user={user} />
           )} />
 
-          {/* <Route path='/carts' render={() => (
-            <Item msgAlert={this.msgAlert} setUser={this.setUser} />
-          )}/> */}
-          <AuthenticatedRoute user={user} path='/carts/:id' render={() => (
+          <AuthenticatedRoute user={user} exact path='/carts' render={() => (
+            <Orders user={user} />
+          )}/>
+          <AuthenticatedRoute user={user} exact path='/carts/:id' render={() => (
             <Cart user={user} cart={cart} setCart={this.setCart}/>
           )} />
-          {/* <AuthenticatedRoute path='/checkout' render={() => (
+          {/*  }<AuthenticatedRoute path='/checkout' render={() => (
             <Checkout user={user} />
           )} /> */}
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
