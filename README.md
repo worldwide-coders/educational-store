@@ -7,7 +7,7 @@ Some communities are fortunate to have adequate resources in their public school
 - [GitHub API Repo](https://github.com/worldwide-coders/educational-store-api)
 - [Deployed API](https://thawing-basin-32932.herokuapp.com)
 - [GitHub Repo](https://github.com/worldwide-coders/educational-store)
-- [Deployed Client](https://sebastian-chang.github.io/block-share)
+- [Deployed Client](https://worldwide-coders.github.io/educational-store/#/)
 
 ## Planning Story
 
@@ -65,6 +65,11 @@ Some communities are fortunate to have adequate resources in their public school
 
 #### Wireframe:
 
-![wireframe](https://github.com/sebastian-chang/block-share/blob/master/public/images/Block-Share-Wireframe.jpg)
+![wireframe_home](https://i.imgur.com/BUdwuSM.png)
+![wireframe_sign](https://i.imgur.com/6EKrtLd.png)
+![wireframe_items](https://i.imgur.com/hfjnGcj.png)
+![wireframe_find_item](https://i.imgur.com/DJap7q2.png)
+![wireframe_my_cart](https://i.imgur.com/Bzne2Nj.png)
+![wireframe_all_orders](https://i.imgur.com/VpQIY6p.png)
 
 ---
