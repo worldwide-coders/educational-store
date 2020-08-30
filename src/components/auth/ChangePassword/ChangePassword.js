@@ -6,7 +6,7 @@ import messages from '../../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import styles from './ChangePassword.css'
+import styles from './../AuthenticatedStyling.css'
 
 //  import Layout from './../../../components/shared/Layout/Layout'
 
@@ -54,7 +54,7 @@ class ChangePassword extends Component {
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           <h3 className={styles.textStyle}>Change Password</h3>
-          <Form className={styles.formStyle} onSubmit={this.onChangePassword}>
+          <Form onSubmit={this.onChangePassword}>
             <Form.Group controlId="oldPassword">
               <Form.Label>Old password</Form.Label>
               <Form.Control
