@@ -136,7 +136,7 @@ const Cart = props => {
             <Button variant='danger' className='btn-sm toRight' onClick={() => (removeOneFromCart(line.item, props.cart))}>Decrease Item</Button>
             <Button variant='success' className='btn-sm toRight' onClick={() => (addToCart(line.item, props.cart))}>Increase Item</Button>
           </Card.Body>
-          <Card.Footer className='text-right'>Subtotal (Quantiy {line.qty}): ${line.price.toFixed(2)}</Card.Footer>
+          <Card.Footer className='text-right'>Subtotal (Quantity {line.qty}): ${line.price.toFixed(2)}</Card.Footer>
         </Card>
       )
     }
