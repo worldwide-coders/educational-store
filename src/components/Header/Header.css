@@ -2,9 +2,11 @@
   /* margin: 1rem auto; */
   margin: auto;
   position: relative;
+  transition: 1.5s ease;
   -webkit-transition: 1.5s ease;
 }
 :local(.navbarBackground):hover {
+  transition: 1.5s ease;
   -webkit-transition: 1.5s ease;
   font-size: 1.2rem;
 }
