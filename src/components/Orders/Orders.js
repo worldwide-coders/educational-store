@@ -42,8 +42,8 @@ class Orders extends Component {
         </Fragment>
       ))
       return (
-        <div key={cart._id}>
-          <Card>
+        <div className="container" key={cart._id}>
+          <Card className="row">
             <Card.Body>
               <Card.Title>Price Total: {cart.priceTotal}</Card.Title>
               <Card.Text>
