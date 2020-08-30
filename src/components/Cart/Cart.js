@@ -161,11 +161,11 @@ const Cart = props => {
         contentLabel="Credit Card Form"
       >
 
-        <button onClick={closeModal}>close</button>
         {/* <TestCheckout cart={props.cart} /> */}
         <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
           <CheckoutForm cart={props.cart} setCart={props.setCart} user={props.user} />
         </Elements>
+        <button onClick={closeModal}>close</button>
       </Modal>
     </div>
   )
