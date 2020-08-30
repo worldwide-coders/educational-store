@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react'
+import { Card } from 'react-bootstrap'
 import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+import './Orders.css'
 
 class Orders extends Component {
   constructor (props) {
@@ -41,8 +43,14 @@ class Orders extends Component {
       ))
       return (
         <div key={cart._id}>
-          <h2>{lineItems}</h2>
-          <h2>Price Total: {cart.priceTotal}<br/></h2>
+          <Card>
+            <Card.Body>
+              <Card.Title>Price Total: {cart.priceTotal}</Card.Title>
+              <Card.Text>
+                {lineItems}
+              </Card.Text>
+            </Card.Body>
+          </Card>
         </div>
       )
     })

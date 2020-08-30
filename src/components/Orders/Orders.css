@@ -1,0 +1,22 @@
+/* h4 {
+  text-align: center;
+}
+
+.row {
+  justify-content: center;
+} */
+
+.card {
+  text-align: center;
+  justify-content: center;
+}
+
+.card-body {
+  color: black;
+  justify-content: center;
+  text-align: center;
+}
+
+.cardDiv {
+  width: 50%;
+}
