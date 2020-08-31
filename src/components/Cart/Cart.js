@@ -129,10 +129,10 @@ const Cart = props => {
         //   <button onClick={() => (addToCart(line.item, props.cart))}>Increase Item</button>
         //   <button onClick={() => (removeOneFromCart(line.item, props.cart))}>Decrease Item</button>
         // </li>
-        <Card className='lineItem'>
+        <Card className='lineItem' key={line._id}>
           <Card.Header>{line.item.name}<span className='toRight'>Price: ${line.item.price}</span></Card.Header>
           <Card.Body>
-            <Card.Text><p>{line.item.description}</p></Card.Text>
+            <Card.Text>{line.item.description}</Card.Text>
             <Button variant='danger' className='btn-sm toRight' onClick={() => (removeOneFromCart(line.item, props.cart))}>Decrease Item</Button>
             <Button variant='success' className='btn-sm toRight' onClick={() => (addToCart(line.item, props.cart))}>Increase Item</Button>
           </Card.Body>

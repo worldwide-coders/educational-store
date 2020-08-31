@@ -1,6 +1,7 @@
 import React from 'react'
 import { CardElement } from '@stripe/react-stripe-js'
 import { CARD_OPTIONS } from './CheckoutStyles'
+import './CheckoutForm.css'
 
 export const CardField = ({ onChange }) => (
   <div className="FormRow">

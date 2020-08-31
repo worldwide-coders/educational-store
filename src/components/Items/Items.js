@@ -38,7 +38,7 @@ class Items extends Component {
 
   render () {
     const items = this.state.items.map(item => (
-      <Link key='item._id' to={`/items/${item._id}`}>
+      <Link key={item._id} to={`/items/${item._id}`}>
         <ItemsCards card={item} />
       </Link>
     ))

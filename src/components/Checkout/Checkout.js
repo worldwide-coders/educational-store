@@ -7,7 +7,7 @@ import apiUrl from '../../apiConfig'
 import { createCart } from '../../api/auth'
 
 // import { ELEMENTS_OPTIONS } from './CheckoutStyles'
-import { CardField, Field, SubmitButton, ErrorMessage, ResetButton } from './CheckoutObjects'
+import { CardField, Field, SubmitButton, ErrorMessage } from './CheckoutObjects'
 import './CheckoutForm.css'
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
@@ -31,6 +31,7 @@ const CheckoutForm = props => {
 
   useEffect(() => {
   // Create PaymentIntent as soon as the page loads
+    reset()
     axios({
       url: apiUrl + '/create-payment-intent',
       method: 'POST',
@@ -76,21 +77,25 @@ const CheckoutForm = props => {
       }
     })
       .then(res => {
-        const newCart = props.cart
-        newCart.isPurchased = true
-        axios({
-          url: apiUrl + '/carts/' + props.cart.id,
-          method: 'PATCH',
-          headers: {
-            'Authorization': `Token token=${props.user.token}`
-          },
-          data: {
-            cart: newCart
-          }
-        })
-          .then(() => createCart(props.user))
-          .then(res => props.setCart(res.data.cart))
-        return res
+        if (!res.error) {
+          const newCart = props.cart
+          newCart.isPurchased = true
+          axios({
+            url: apiUrl + '/carts/' + props.cart.id,
+            method: 'PATCH',
+            headers: {
+              'Authorization': `Token token=${props.user.token}`
+            },
+            data: {
+              cart: newCart
+            }
+          })
+            .then(() => createCart(props.user))
+            .then(res => props.setCart(res.data.cart))
+          return res
+        } else {
+          return res
+        }
       })
       // const newCart = props.cart
     // console.log(newCart.isPurchased))
@@ -102,11 +107,8 @@ const CheckoutForm = props => {
     if (payload.error) {
       setError(payload.error)
     } else {
-      console.log('did we make it here? ', payload.paymentIntent)
       setPaymentMethod(payload.paymentIntent)
     }
-
-    console.log('this is payment method', paymentMethod)
   }
 
   const reset = () => {
@@ -126,7 +128,7 @@ const CheckoutForm = props => {
         Dont worry no money was actually charged, but we generated a PaymentMethod: {paymentMethod.id} for the amount of
         ${(paymentMethod.amount / 100).toFixed(2)}
       </div>
-      <ResetButton onClick={reset} />
+      {/* <ResetButton onClick={reset} /> */}
     </div>
   ) : (
     <form className="Form" onSubmit={handleSubmit}>
