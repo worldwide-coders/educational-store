@@ -120,6 +120,19 @@ const Cart = props => {
   // Generates a list if items in cart
   // if (props.carts) {
   const emptyCart = <div><img className='cartImg' src={emptyCartLogo} /><p>Cart is empty.  Please donate!</p></div>
+  const deleteCart = () => {
+    return (axios({
+      url: apiUrl + '/carts/' + props.cart.id,
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Token token=${props.user.token}`
+        // 'Authorization': `Token token=${token}`
+      }
+    })
+      .then(res => props.setCart(res.data.cart))
+      .catch(console.error)
+    )
+  }
   const itemList = props.cart.lineItems.map(line => {
     if (line) {
       return (
@@ -150,8 +163,9 @@ const Cart = props => {
         </div>
         <div className='col-sm-4'>
           <p><strong>Tax:</strong> Exempt</p>
-          <p><strong>Total Price:</strong> ${props.cart.priceTotal.toFixed(2)}</p>
+          <div><strong>Total Price:</strong> ${props.cart.priceTotal.toFixed(2)}</div>
           {props.cart.lineItems.length === 0 ? '' : <button onClick={openModal}>Checkout</button>}
+          {props.cart.lineItems.length > 0 ? <button onClick={deleteCart}>Delete this cart</button> : '' }
         </div>
       </div>
       <Modal
