@@ -58,7 +58,7 @@ class Orders extends Component {
       <div>
         <h4>All orders</h4>
         <div className='container col-sm-12'>
-          {cartList}
+          {cartList.reverse()}
         </div>
       </div>
     )
