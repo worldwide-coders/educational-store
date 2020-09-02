@@ -3,6 +3,7 @@ import { Card, Button } from 'react-bootstrap'
 import Modal from 'react-modal'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+import { createCart } from '../../api/auth'
 
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
@@ -129,6 +130,7 @@ const Cart = props => {
         // 'Authorization': `Token token=${token}`
       }
     })
+      .then(() => createCart(props.user))
       .then(res => props.setCart(res.data.cart))
       .catch(console.error)
     )
@@ -145,7 +147,7 @@ const Cart = props => {
         <Card className='lineItem' key={line._id}>
           <Card.Header>{line.item.name}<span className='toRight'>Price: ${line.item.price}</span></Card.Header>
           <Card.Body>
-            <Card.Text><p>{line.item.description}</p></Card.Text>
+            <Card.Text>{line.item.description}</Card.Text>
             <Button variant='secondary'className='btn-sm toRight' onClick={() => (removeOneFromCart(line.item, props.cart))}>Decrease Item</Button>
             <Button variant='primary' className='btn-sm toRight' onClick={() => (addToCart(line.item, props.cart))}>Increase Item</Button>
           </Card.Body>
