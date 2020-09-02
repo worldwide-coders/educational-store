@@ -53,7 +53,7 @@ class App extends Component {
         ))}
         <main className="container">
           <Route path='/sign-up' render={() => (
-            <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
+            <SignUp msgAlert={this.msgAlert} setUser={this.setUser} setCart={this.setCart} />
           )} />
           <Route exact path='/' render={() => (
             <HomeCarousel />
