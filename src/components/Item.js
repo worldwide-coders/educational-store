@@ -10,6 +10,7 @@ import apiUrl from '../apiConfig'
 
 // Import axios so we can make HTTP requests
 import axios from 'axios'
+import styles from './Item.css'
 
 class Item extends Component {
   constructor (props) {
@@ -156,7 +157,7 @@ class Item extends Component {
     return (
       <div>
         <h4>Name: {item.name}</h4>
-        {/* <img src={item.imageUrl} /> */}
+        <img className={styles.height} src={item.imageUrl} />
         <p>Price: {item.price}</p>
         <CartButton addToCart={() => this.addToCart(item, this.props.cart)} />
         <Link to='/items'>Back to all items</Link>
